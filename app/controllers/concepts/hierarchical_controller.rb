@@ -75,6 +75,7 @@ class Concepts::HierarchicalController < ConceptsController
             additionalText: (" (#{c.additional_info})" if c.additional_info.present?),
             load_on_demand: load_on_demand,
             url: url,
+            color: c.color,
             update_url: move_concept_url(c),
             glance_url: glance_concept_url(c, format: :html),
             published: (c.published?) ? true : false,

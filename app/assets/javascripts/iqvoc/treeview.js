@@ -31,6 +31,7 @@ function Treeview(container) {
         update_url: item.data('update-url'),
         glance_url: item.data('glance-url'),
         published: item.data('published'),
+        color: item.data('color'),
         additionalText: item.children('span.additional_info').html()
       };
     });
@@ -48,7 +49,7 @@ function Treeview(container) {
         return uri.normalize().toString();
       },
       onCreateLi: function(node, $li) {
-        var link = buildLink(node.url, node.name);
+        var link = buildLink(node.url, node.name, node.color);
         $li.find('.jqtree-title').replaceWith(link);
 
         // add aditional info if present (e.g. for collections)
@@ -227,12 +228,15 @@ function Treeview(container) {
     $tree.tree('updateNode', node, {moved: false});
   }
 
-  function buildLink(url, label) {
+  function buildLink(url, label, color) {
     var link = $('<a/>')
 
     link.attr('href', url)
         .addClass('tree-element-link')
         .html(label);
+    if (color != "") {
+      link.attr('style','color:' + color)
+    }
 
     return link;
   }

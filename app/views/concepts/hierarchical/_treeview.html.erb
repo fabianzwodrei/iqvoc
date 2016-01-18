@@ -21,6 +21,7 @@
       data-has-children="<%= has_children %>"
       data-update-url="<%= move_concept_url(concept, format: :json) %>"
       data-published="<%= concept.published? %>"
+      data-color="<%= concept.color ||= '' %>"
       data-locked="<%= locked %>"
       data-glance-url="<%= glance_concept_url(concept) %>">
       <% if concept.published? %>

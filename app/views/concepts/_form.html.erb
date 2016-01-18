@@ -31,6 +31,14 @@
   </fieldset>
   <!-- / Labelings -->
 
+  <!-- Color -->
+  <fieldset>
+    <legend>Color</legend>
+    <small>Simple english colors, like blue, red or green. grey or pink</small>
+    <%= f.text_field :color %>
+  </fieldset>
+  <!-- /Color -->
+
   <!-- Collections -->
   <fieldset>
     <legend><%= Iqvoc::Collection.base_class.model_name.human(:count => 2) %></legend>
