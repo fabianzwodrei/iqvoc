@@ -48,6 +48,10 @@ class Ability
       if user.owns_role?(:administrator)
         can [:update, :destroy, :unlock], [::Concept::Base, ::Label::Base], published_at: nil # Mustn't be locked by myself
 
+        can :destroy, ::Concept::Base do |concept|
+          concept.relations.any? == false
+        end
+        
         can :manage, User
         can :manage, Iqvoc.config
 

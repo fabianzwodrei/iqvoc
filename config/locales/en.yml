@@ -140,6 +140,7 @@ en:
        job_detail: "%{match_class}-Relation of concept %{subject} from remote ontology to %{target} pending."
        job_state: "(State: %{state})"
        to_concept: "To Concept"
+       delete_confirm: "Do you really want to delete this concept?"
        teaser:
          close: "Close"
          no_content: "No definitions, alternative labels or collections have been specified for this concept yet."
@@ -376,6 +377,10 @@ en:
      concept_versions:
        delete: "New Concept version has been deleted."
        delete_error: "New Concept version could not be deleted"
+     concepts:
+       delete:
+         success: "Concept has been deleted."
+         error: "Concept could not be deleted."
      notes:
        save:
          success: "The note has been saved."
@@ -439,3 +444,4 @@ en:
        pref_labels_not_unique: "The preferred labels '%{label}' are already in use."
        pref_label_defined_in_alt_labels: "The alternative label %{label} is already used as a preferred label."
        alt_labels_not_unique: "The alternative label %{label} is used twice."
+       admins_can_delete_if_no_relations_exist: "Administrators can delete a concept, if it has no relationships."

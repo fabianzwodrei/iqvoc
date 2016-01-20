@@ -187,16 +187,18 @@ class ConceptsController < ApplicationController
   end
 
   def destroy
-    @new_concept = Iqvoc::Concept.base_class.by_origin(params[:id]).unpublished.last!
+    @new_concept = Iqvoc::Concept.base_class.by_origin(params[:id]).last!
+    
+    @published = @new_concept.published?
 
     authorize! :destroy, @new_concept
 
     if @new_concept.destroy
-      flash[:success] = I18n.t('txt.controllers.concept_versions.delete')
+      flash[:success] = @published ? I18n.t('txt.controllers.concepts.delete.success') : I18n.t('txt.controllers.concept_versions.delete')
       redirect_to dashboard_path
     else
-      flash[:success] = I18n.t('txt.controllers.concept_versions.delete_error')
-      redirect_to concept_path(published: 0, id: @new_concept)
+      flash[:error] = @published ? I18n.t('txt.controllers.concepts.delete.error') : I18n.t('txt.controllers.concept_versions.delete_error')
+      redirect_to concept_path(published: (@published ? 1 : 0), id: @new_concept)
     end
   end
 

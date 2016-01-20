@@ -5,10 +5,15 @@
   <% if @jobs && @jobs.any? %>
     <%= render partial: 'partials/concept/reverse_match_notice', locals: {concept: @concept, jobs: @jobs} %>
   <% end %>
-    <div class="editing_versioning_toolbar well">
-      <%= button_to t("txt.views.versioning.versioning_mode"),
-        concept_versions_branch_path(:origin => @concept.origin), :class => "btn btn-default" %>
-    </div>
+  <div class="editing_versioning_toolbar well">
+    <%= button_to t("txt.views.versioning.versioning_mode"),
+      concept_versions_branch_path(:origin => @concept.origin), :class => "btn btn-default" %>
+      <% if can? :destroy, @concept %>
+         <a href="<%= concept_path %>" data-method="delete" data-confirm="<%= I18n.t("txt.views.concepts.delete_confirm") %>" class="btn btn-danger"><%= t("txt.common.delete") %></a>
+      <% else %>
+        <button  class="btn btn-default" onclick="alert('<%= t("txt.models.concept.admins_can_delete_if_no_relations_exist") %>')"><%= t("txt.common.delete") %></button>
+      <% end %>
+  </div>
 <% elsif can?(:read, @new_concept_version) %>
     <div class="editing_versioning_toolbar well">
       <%= link_to t("txt.views.versioning.preview_new_version"),
