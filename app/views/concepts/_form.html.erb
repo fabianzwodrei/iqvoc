@@ -34,8 +34,8 @@
   <!-- Color -->
   <fieldset>
     <legend>Color</legend>
-    <small>Simple english colors, like blue, red or green. grey or pink</small>
-    <%= f.text_field :color %>
+
+    <%= f.select :color, [["none", ""], ["Green (Polyhierarchische Einordnung)", "green"], ["Orange (Diskussionsbedarf)", "orange"], ["Red (Unsichere Einordnung)", "red"]], { label: "Editorial Color" }, { class: "selectpicker" } %>
   </fieldset>
   <!-- /Color -->
 
