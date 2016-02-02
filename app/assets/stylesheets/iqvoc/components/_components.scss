@@ -242,6 +242,12 @@ tr.highlightable {
     color: $widget-highlight-background-color;
   }
 
+  .concept-mapping-broader-path {
+    font-size: $font-size-h4;
+    padding: 5px 5px 10px;
+    text-align: center;
+  }
+
   .concept-mapping-dataset, .concept-mapping-match-type {
     @extend %padded;
     color: $muted-color;

@@ -78,9 +78,34 @@ class ConceptsController < ApplicationController
           return concept.relations.includes(:target).
             merge(Iqvoc::Concept.base_class.published).references(:concepts)
         }
+
+        # BEGIN - FETCHING BROADER TERMS AS STRING 
+
+          only_published = true
+          related_concepts = @concept.related_concepts_for_relation_class(Iqvoc::Concept.broader_relation_class, only_published)
+          broader_relations_string = ""
+
+          if related_concepts.any?
+            parent = related_concepts.first
+            parents = []
+            while (parent && !parents.include?(parent))
+             parents << parent
+             parent = parent.related_concepts_for_relation_class(Iqvoc::Concept.broader_relation_class, only_published).first
+            end
+
+            broader_relations_string = parents.map { |concept|
+              concept.pref_label
+            }.reverse.push(@concept.pref_label).join(" > ").html_safe
+          end
+
+          
+
+        # END - FETCHING BROADER TERMS AS STRING
+
         concept_data = {
           origin: @concept.origin,
           labels: @concept.labelings.map { |ln| labeling_as_json(ln) },
+          broader_path_as_string: broader_relations_string,
           relations: published_relations.call(@concept).map { |relation|
             concept = relation.target
             {
