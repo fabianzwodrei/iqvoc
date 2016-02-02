@@ -40,8 +40,8 @@ module Concept
         labels = pref_labels.select{ |l| l.published? }
         if labels.none?
           errors.add :base, I18n.t('txt.models.concept.no_pref_label_error')
-        elsif not labels.map(&:language).map(&:to_s).include?(Iqvoc::Concept.pref_labeling_languages.first.to_s)
-          errors.add :base, I18n.t('txt.models.concept.main_pref_label_language_missing_error')
+        # elsif not labels.map(&:language).map(&:to_s).include?(Iqvoc::Concept.pref_labeling_languages.first.to_s)
+        #   errors.add :base, I18n.t('txt.models.concept.main_pref_label_language_missing_error')
         end
       end
     end
