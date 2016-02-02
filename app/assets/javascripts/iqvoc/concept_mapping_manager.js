@@ -46,19 +46,22 @@ ConceptMappingManager.prototype.render = function() {
   var items = [];
   $.each(this.conceptMappings, function(label, category) {
     $.each(category.values, function(i, item) {
-      var item_uri = item.uri;
       item = self.renderBubble(item, label);
 
-      $.getJSON( item_uri, function( data ) {
-        console.log(data)
-        $(item[0]).prepend('<div class="concept-mapping-broader-path">' + data.broader_path_as_string + '</div>')
-      });
+      
 
       items.push(item[0]);
     });
   });
 
   this.list.empty().append(items);
+
+  $(items).each(function(i,item){
+    var item_url = $(item).find('a')[0].href;
+    $.getJSON( item_url, function( data ) {
+      $(item).append('<div class="concept-mapping-broader-path">' + data.broader_path_as_string + '</div>')
+    });
+  });
 };
 ConceptMappingManager.prototype.renderBubble = function(item, categoryLabel) {
   var category = $('<span class="concept-mapping-match-type">').
