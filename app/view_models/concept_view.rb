@@ -44,6 +44,10 @@ class ConceptView
     @concept.labels_for_labeling_class_and_language(Iqvoc::Concept.alt_labeling_class, I18n.locale)
   end
 
+  def notes 
+    @concept.notes
+  end
+
   # related concepts
   # returns a list of `Link`s
   def related

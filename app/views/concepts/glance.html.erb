@@ -32,6 +32,18 @@
         </ul>
       </div>
       <% end %>
+
+      <% if @view.notes.any? %>
+      <% @view.notes.each do |n| %>
+      <% unless n.class == Note::SKOS::ChangeNote %>
+      <div>
+        <h2><%= n.model_name.human %> (<%= n.language %>)</h2>
+        <p><%= n.value %></p>
+      </div>
+      <% end %>
+      <% end %>
+      <% end %>
+
       <% if @view.collections.any? %>
       <div>
         <h2><%= Iqvoc::Collection.base_class.model_name.human(count: 2) %></h2>
