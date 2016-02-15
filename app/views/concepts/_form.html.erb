@@ -33,11 +33,18 @@
 
   <!-- Color -->
   <fieldset>
-    <legend>Color</legend>
+    <legend class="text-primary">Color</legend>
 
     <%= f.select :color, [["none", ""], ["Green (Polyhierarchische Einordnung)", "green"], ["Red (?? Unsichere Einordnung)", "red"], ["Redundante Begriffe", "pink"], ["Black (Dariah)", "black"]], { label: "Editorial Color" }, { class: "selectpicker" } %>
   </fieldset>
   <!-- /Color -->
+
+  <!-- Editorial Flag -->
+  <fieldset>
+    <legend class="text-primary">Editorial Flag</legend>
+    <%= f.text_field :editorial_flag %>
+  </fieldset>
+  <!-- /Editorial Flag -->
 
   <!-- Collections -->
   <fieldset>
