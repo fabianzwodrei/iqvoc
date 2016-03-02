@@ -2,6 +2,7 @@
 //= require iqvoc/onebox
 //= require iqvoc/langselect
 //= require iqvoc/entityselect
+//= require iqvoc/conceptselect
 //= require iqvoc/entityselect_qualified
 //= require iqvoc/concept_mapper
 //= require iqvoc/federated_concept_mapper

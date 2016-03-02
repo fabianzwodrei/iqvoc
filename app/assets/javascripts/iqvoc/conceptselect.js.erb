@@ -1,0 +1,37 @@
+// EntitySelector extension for concept-selection
+
+/*jslint vars: true, unparam: true, white: true */
+/*global jQuery, IQVOC */
+
+IQVOC.ConceptSelector = (function($) {
+
+"use strict";
+
+var CS = function(args) {
+	var res = IQVOC.EntitySelector.apply(this, arguments);
+
+	this.container.bind("typeahead:cursorchanged", this.onCursorChange)
+
+	return res;
+};
+CS.prototype = new IQVOC.EntitySelector();
+
+CS.prototype.onCursorChange = function(ev,item) {
+	var widget = $(ev.currentTarget).data('widget');
+
+	var responder = function(data, status, xhr) {
+			var targetSuggestion = $('#'+item.value);
+			targetSuggestion.append(" - " + data.broader_path_as_string)
+			targetSuggestion.parent().addClass('broader_path_added')
+	}
+	if(!$('.tt-cursor:first').hasClass('broader_path_added')) {
+		$.getJSON(widget.uriTemplate.replace("%7Bid%7D.html", item.value + ".json"), responder);
+	}
+};
+
+
+
+
+return CS;
+
+}(jQuery));

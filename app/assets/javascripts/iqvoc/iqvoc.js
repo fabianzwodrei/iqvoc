@@ -127,6 +127,10 @@ jQuery(document).ready(function($) {
     new IQVOC.QualifiedEntitySelector(node);
   });
 
+  $("input.concept_select").each(function(i, node) {
+    new IQVOC.ConceptSelector(node);
+  });
+
   // hide broader relations for top+ terms (mutually exclusive in mono hierarchies)
   var topTerm = $("#concept_top_term.exclusive");
   var onTopTermToggle = function(ev) {

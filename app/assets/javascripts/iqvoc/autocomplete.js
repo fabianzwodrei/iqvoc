@@ -26,7 +26,7 @@ function augment(field, source, options) {
         return $("<div />").append(el).html();
       },
       suggestion: function(item) {
-        var el = $("<p />").text(item.label);
+        var el = $("<p />").text(item.label).attr('id', item.value);
         return $("<div />").append(el).html();
       }
     }

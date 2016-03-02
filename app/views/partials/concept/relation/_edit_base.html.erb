@@ -2,7 +2,7 @@
 <%= f.form_group nil, :label => { :text => klass.model_name.human(:count => klass.singular? ? 1 : 2) } do %>
   <%= text_field_tag fieldname, widget_values(concept, klass),
     :id => klass.name.to_relation_name,
-    :class => "entity_select",
+    :class => "concept_select",
     :"data-query-url" => concepts_path(:format => :json,
     :exclude_top_terms => klass != Iqvoc::Concept.broader_relation_class || nil),
     :"data-entity-uri" => concept_path("{id}"),
