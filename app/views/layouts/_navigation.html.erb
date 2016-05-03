@@ -1,18 +1,38 @@
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-        <i class="fa fa-bars"></i> <%= t('txt.common.menu') %>
-      </button>
-      <%= link_to Iqvoc.config["title"], localized_root_path, :class => "navbar-brand" %>
-    </div>
-
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <%= nav_items Iqvoc.navigation_items %>
+  <div class="pull-left">
+    <ul class="nav navbar-nav">
+      <li class="dropdown" uib-dropdown="">
+        <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" href="#" uib-dropdown-toggle="">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAEkElEQVRoge2Zz63bMAzGe+8lIwQo0Gszghco8M49eYSM4A0ygkfwCBrBI2gEj/DrwWRN05L/JX5pC39A8PIUieZHiiJFf/ly4sSJEydOnDixAKAEKvP/Fbi9UaXjAFT0uJux1hrgvwBwARoh2wlxO3ZflvKPALgLSUUDBPGsGuDj3Xo+BeAmsRoZo3JjnRiEd+u8C7JNa0eyE28GN96KATogvlv3TZCTVpVXMh/iTe9lxCjWMJ+7pcX6jShdAQ9VKDP/AhQyV2OxFRm1EH8kiKqn1TC6pY/3MNN4SnkCt+ahW1AUV0M1hrgSCUauJ4r8rwdafTTZW4pcAne3pqP3bNI4hoiSaQ3J2hjgzjhNXY8mXIgCNu5S6JAqiD5OEWVTiIwPJrulG4Ywacy4er44lLAQUCIfM4QBGrPmTxpZQBCCQT6R6emtvx3vYVFe43ERZk2g3x05qMciY8PYtBTpvRzl//JwsqK8ppKbfA/mM0e48r8n0NF7VE/uirG3dc7jU8hmDFDmtHeEcyEQndE0D8M0DKIYI7yTcCpvesLdDGELvSAgcjUFRsbFyeVdZC/k47mTOR8M5WAKLcMpfGcoYCJjY3Yyp3oLWSGT3c7ItmO6TedgU08wJPWmBO+8IS2QUM+VTFOLIpqPeljLzLv81Wd0HHEy02/Tit4rWvdOWiksV11BZOTIWtJKKCS+IzKuR5C9ko/J0s2dKyRqlqsxD62P7QWiPYSoIaH1rj44OKVuZm6dUbxlfCHIwd53K4aioknMbRlKzCDfS15xWjOtayv34GtinieyFdE9cy2ej2vGJeCFaerp6OM37CCm69WzevpGhtN4j8H2k8YQNmOpeE1tva3YKyMybQsVL/GwGfdxGXYqq2hZl5tz0FtbrfrsJWyLicKM+zT0Cg8/g8roFmVsm5cZbj+KB2Mv391vR2BtDFvC6qR1LR/6eAgzwmuEOMMWWpN61iCIwtpNCQxXxDlUTn9Y29RbqXxt5tc8F3+QqJ7c70shU7q1QcZHMlNk5zoRHhe3rs7Mi+S3Zsgp5dbkZCtubq2GWPFKwoVbm/NCKr4jCzcdxmFl2zkTJNZqHM+/YNtI2JaW18wcvezfRHbBynqYab6fawuVGR7V0kPW9pp9cz1VjPxpz+4BUyP6Rr1FZBxiunaesEyOK/g2C2ueImvkBie3niE9avfI2HIBwrqcWpr5fle8hKzI9iH2YD5taldEW0ntmofk4lER3XwfW2VG9F7SFq0ZL8nvxsDMi7zUQ+oZwqWba7dYkxG5l6w/G7rEnIL01tfO6HLfi3y3w3vX7oaOF7ZMEzo0zJzwzkkVw1V2dYmZSgPFzEPKZwg6uRfGO2eVbOPpyum37kxhZrsybga8tPu/15DGSdoW9g2LqN7PCbBvCK4yVjJ+Nzvx/E6SV/p4tHFbbZQRlZiTm0pl0yrMkapJp4OnvcvwonyzXDHShJCbcxFDBvrUNj3ISMew9pn0AdWzZOVZkXGKWf2+l+GthDXYcv7dqOBX4OsL5X2Tzw/5fN+wtgB+AT/lU2xZf+LEiRMnTvwl+A3TqwwP6laf1wAAAABJRU5ErkJggg==" id="brand-img">
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu" uib-dropdown-menu="">
+          <li><a href="http://www.dainst.org/de/forschung/forschung-digital/idai.welt" target="_blank">iDAI.welt</a></li>
+          <li class="divider"></li>
+          <li><a href="https://gazetteer.dainst.org/" target="_blank">iDAI.gazetteer</a></li>
+          <li><a href="http://geoserver.dainst.org/" target="_blank">iDAI.geoserver</a></li>
+          <li><a href="http://arachne.dainst.org/" target="_blank">iDAI.objects&nbsp;/&nbsp;Arachne</a></li>
+          <li><a href="http://zenon.dainst.org" target="_blank">iDAI.bibliography&nbsp;/&nbsp;Zenon</a></li>
+          <li><a href="http://archwort.dainst.org/thesaurus/de/vocab" target="_blank">iDAI.vocab</a></li>
+          <li><a href="http://hellespont.dainst.org" target="_blank">Hellespont</a></li>
+          </ul>
+        </li>
       </ul>
-
-      <%= render "layouts/controls" %>
-    </div>
   </div>
+  <!-- <div class="container"> -->
+  <div class="navbar-header">
+    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+      <i class="fa fa-bars"></i> <%= t('txt.common.menu') %>
+    </button>
+    <%= link_to Iqvoc.config["title"], localized_root_path, :class => "navbar-brand" %>
+  </div>
+
+  <div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+      <%= nav_items Iqvoc.navigation_items %>
+    </ul>
+
+    <%= render "layouts/controls" %>
+  </div>
+  <!-- </div> -->
 </div>
