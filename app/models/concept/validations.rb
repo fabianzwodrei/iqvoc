@@ -10,9 +10,10 @@ module Concept
       validate :exclusive_top_term
       validate :rooted_top_terms
       validate :valid_rank_for_ranked_relations
-      validate :unique_pref_label
+      validate :unique_pref_labels
       validate :exclusive_pref_label
       validate :unique_alt_labels
+      validate :exclusive_broader_and_narrower_concepts
     end
 
     # top term and broader relations are mutually exclusive
@@ -56,23 +57,19 @@ module Concept
         lang = pref_label.language.to_s
         origin = (pref_label.origin || pref_label.id || pref_label.value).to_s
         if (languages.keys.include?(lang) && languages[lang] != origin)
+          # there are at least two pref labels for one specific language
           errors.add :pref_labelings, I18n.t('txt.models.concept.pref_labels_with_same_languages_error')
+          break
         end
         languages[lang] = origin
       end
     end
 
-    def unique_pref_label
+    def unique_pref_labels
       if validatable_for_publishing?
-        # checks if there are any existing pref labels with the same
-        # language and value
+        # checks if any other concept already owns the chosen pref labels
         conflicting_pref_labels = pref_labels.select do |l|
-          Labeling::SKOS::Base.
-            joins(:owner, :target).
-            where(labels: { value: l.value, language: l.language }).
-            where('labelings.owner_id != ?', id).
-            where('concepts.origin != ?', origin).
-            any?
+          Iqvoc::Concept.base_class.joins(:pref_labels).where(labels: { value: l.value, language: l.language }).where('labelings.owner_id != ?', id).where('concepts.origin != ?', origin).any?
         end
 
         if conflicting_pref_labels.any?
@@ -122,6 +119,16 @@ module Concept
               relation: relation.class.model_name.human.downcase,
               relation_target_label: relation.target.pref_label.to_s)
           end
+        end
+      end
+    end
+
+    def exclusive_broader_and_narrower_concepts
+      if validatable_for_publishing?
+        relations_union = broader_relations.map { |b| b.target } & narrower_relations.map { |n| n.target }
+
+        if relations_union.any?
+          errors.add :base, I18n.t('txt.models.concept.no_narrower_and_broader_relations', concepts: relations_union.map{ |u| u.narrower_relations.map { |r| r.target.pref_labels.first  } }.flatten.join(', '))
         end
       end
     end

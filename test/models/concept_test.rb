@@ -131,7 +131,7 @@ class ConceptTest < ActiveSupport::TestCase
     refute monkey.publishable?, 'There should be no duplicates between prefLabel/altLabel'
   end
 
-  test 'multiple pref labels' do
+  test 'multiple pref labels of different languages' do
     concept = RDFAPI.devour 'bear', 'a', 'skos:Concept'
     RDFAPI.devour concept, 'skos:prefLabel', '"Bear"@en'
     RDFAPI.devour concept, 'skos:prefLabel', '"Bär"@de'
@@ -204,5 +204,20 @@ class ConceptTest < ActiveSupport::TestCase
         labels_for.call(concept, Labeling::SKOS::AltLabel)
     assert_equal 'lorem, "foo, bar", ipsum',
         concept.labelings_by_text('labeling_skos_alt_labels', 'en')
+  end
+
+  test 'no narrower and broader concept relation' do
+    bear_concept = RDFAPI.devour 'bear', 'a', 'skos:Concept'
+    RDFAPI.devour bear_concept, 'skos:prefLabel', '"Bear"@en'
+    bear_concept.save
+
+    concept = RDFAPI.devour 'forest', 'a', 'skos:Concept'
+    RDFAPI.devour concept, 'skos:prefLabel', '"Forest"@en'
+    RDFAPI.devour concept, 'skos:narrower', bear_concept
+    RDFAPI.devour concept, 'skos:broader', bear_concept
+    assert concept.save!
+    assert_equal 1, concept.narrower_relations.count
+    assert_equal 1, concept.broader_relations.count
+    refute concept.publishable?
   end
 end

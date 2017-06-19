@@ -64,6 +64,7 @@ class Ability
         can :use, :administration
 
         can :reset, :thesaurus
+        can :sync, :triplestore
       end
     else # no user
       can :create, UserSession

@@ -53,6 +53,7 @@ de:
      welcome: "Hallo %{user_name}"
      move: "Verschieben"
      save: "Speichern"
+     cancel: "Abbrechen"
      copy: "Kopieren"
      reset: "Zurücksetzen"
      language: "Sprache"
@@ -131,11 +132,11 @@ de:
        new: "Neues %{concept_class_name}"
        pref_label: "Bevorzugtes Label"
        classifiers: "Umweltklassen"
-       pending_jobs_header: "Austehende Jobs"
-       pending_jobs_message: "Zu diesem Konzept existieren noch austehende Jobs."
+       pending_jobs_header: "Ausstehende Jobs"
+       pending_jobs_message: "Zu diesem Konzept existieren noch ausstehende Jobs."
        add_match: "Anlage:"
        remove_match: "Löschung:"
-       job_detail: "%{match_class}-Beziehung von Konzept %{subject} aus entfernter Ontologie auf %{target} austehend."
+       job_detail: "%{match_class}-Beziehung von Konzept %{subject} aus entfernter Ontologie auf %{target} ausstehend."
        job_state: "(Status: %{state})"
        to_concept: "Zum Konzept"
        delete_confirm: "Konzept wirklich löschen?"
@@ -181,6 +182,10 @@ de:
        back_to_show: "Zurück zur Originalversion"
        back_to_preview: "Zurück zur Versionsvorschau"
        instance_configuration: "Konfiguration"
+       import: "Import"
+       export: "Export"
+       sync: "Triplestore-Synchronisierung"
+       reset: "Thesaurus löschen"
        hierarchical: "Hierarchisch"
        alphabetical: "Alphabetisch"
        draft: "Bearbeitung"
@@ -269,6 +274,7 @@ de:
        current_revision: "Aktuelle Revision %{rev}"
        in_ongoing_editing_by: "in Bearbeitung von %{user}."
        to_review_error: "Konnte nicht in den Freigabeprozess aufgenommen werden"
+       initial_version: "Initiale Version"
      labelings:
        edit:
          header: "Labeling bearbeiten"
@@ -293,6 +299,7 @@ de:
        reset: Thesaurus löschen
        reset_warning: "Alle Konzepte, Kollektionen und Labels im Thesaurus werden gelöscht."
        jobs_pending_warning: "Einige Hintergrundprozesse sind noch nicht abgeschlossen (z.B. Exports). Ausstehende Prozesse werden ebenfalls gelöscht."
+       reset_confirm: "Soll der Thesaurus wirklich gelöscht werden?"
        reset_success: "Der Thesaurus wurde gelöscht."
        export: "Export"
        import: "Import"
@@ -313,6 +320,7 @@ de:
        error: "Es ist ein Fehler aufgetreten. Export-Job konnte nicht erstellt werden."
        missing_file: "Es ist ein Fehler aufgetreten. Export konnte nicht gefunden werden."
        missing_file: "Es ist ein Fehler aufgetreten. Export konnte nicht gefunden werden."
+       output: "Log-Ausgabe"
 
    partials:
      note:
@@ -425,6 +433,7 @@ de:
        top_term_exclusive_error: "Einem Begriff oberster Ebene darf kein allgemeinerer Begriff zugewiesen werden."
        top_term_rooted_error: "Begriffe oberster Ebene dürfen nicht als spezifischere Begriffe verwendet werden."
        invalid_rank_for_ranked_relations: 'Ungültiger Rang für %{relation} "%{relation_target_label}".'
+       no_narrower_and_broader_relations: 'Sowohl allgemeinere als auch spezifischere Beziehungen: %{concepts}'
        main_pref_label_language_missing_error: "Es muss mindestens ein bevorzugtes Label in der Hauptsprache des Thesaurus existieren."
        pref_labels_with_same_languages_error: "Es darf nur jeweils ein bevorzugtes Label zu einer Sprache geben."
        association_pref_labels_unpublished: "Das bevorzugte Label muss veröffentlicht sein."

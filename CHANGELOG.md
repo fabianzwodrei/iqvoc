@@ -1,3 +1,27 @@
+## [4.11.2]
+
+  * Ruby 2.4 compatibility
+  * drop Ruby 2.0 support (official support ended on 2016-02-24)
+  * drop Ruby 2.1 support (official support ended on 2016-03-31)
+
+## [4.11.1]
+
+  * Fixed: duplicate concept collection assignment on concept creation when assigning concept matches
+  * Fixed: sprockets deprecations
+
+## [4.11.0]
+
+  * Added: render additional concept info in remote alphabetical search results (federated concept mapper)
+  * Fixed: duplicate concept collection assignment bug
+  * Fixed: optimize label search in concept creation/editing (contains)
+  * Fixed: some things related to reverse-matches mirroring
+  * Fixed: initial created change note creation
+
+## [4.10.0]
+
+  * Fixed: several bugs (i18n, sorting)
+  * Fixed: several UI glitches
+
 ## [4.9.0]
 
   * Added: updated to latest Rails release (v4.2.4)
@@ -8,7 +32,7 @@
   * Fixed: Rescue Importer exceptions
   * Fixed: Keep collections during editing
   * Fixed: multiple matches bug ([#345](https://github.com/innoq/iqvoc/issues/345))
-  * Fixed: exclusive label vlaidation ([#340](https://github.com/innoq/iqvoc/issues/340))
+  * Fixed: exclusive label validation ([#340](https://github.com/innoq/iqvoc/issues/340))
 
 ## [4.8.2]
 
