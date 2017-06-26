@@ -32,6 +32,17 @@ function FederatedConceptMapper(selector) {
     noResultsMsg: this.root.data("no-results-msg"),
   });
 
+  this.container.bind("typeahead:cursorchanged", function(ev,item){
+    if(!$('.tt-cursor:first').hasClass('broader_path_added')) {
+      var responder = function(data, status, xhr) {
+        var targetSuggestion = document.getElementById(item.value);
+        targetSuggestion.append(" - " + data.broader_path_as_string)
+        targetSuggestion.parentElement.classList.add('broader_path_added')
+      }
+      $.getJSON(item.value + ".json", responder);
+    }
+  })
+
 }
 FederatedConceptMapper.prototype = new baseClass();
 FederatedConceptMapper.prototype.onChange = function(query, callback) {
@@ -58,6 +69,7 @@ FederatedConceptMapper.prototype.onChange = function(query, callback) {
     }
   });
 };
+
 FederatedConceptMapper.prototype.onResults = function(html, status, xhr, callback) {
   var doc = $("<div />").append(html);
   var concepts = doc.find(".concept-item-link");

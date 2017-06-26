@@ -20,9 +20,9 @@ CS.prototype.onCursorChange = function(ev,item) {
 	var widget = $(ev.currentTarget).data('widget');
 
 	var responder = function(data, status, xhr) {
-			var targetSuggestion = $('#'+item.value);
+			var targetSuggestion = document.getElementById(item.value);
 			targetSuggestion.append(" - " + data.broader_path_as_string)
-			targetSuggestion.parent().addClass('broader_path_added')
+			targetSuggestion.parentElement.classList.add('broader_path_added')
 	}
 	if(!$('.tt-cursor:first').hasClass('broader_path_added')) {
 		$.getJSON(widget.uriTemplate.replace("%7Bid%7D.html", item.value + ".json"), responder);
