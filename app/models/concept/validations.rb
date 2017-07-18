@@ -10,9 +10,9 @@ module Concept
       validate :exclusive_top_term
       validate :rooted_top_terms
       validate :valid_rank_for_ranked_relations
-      validate :unique_pref_labels
+      #validate :unique_pref_labels
       validate :exclusive_pref_label
-      validate :unique_alt_labels
+      #validate :unique_alt_labels
       validate :exclusive_broader_and_narrower_concepts
     end
 
