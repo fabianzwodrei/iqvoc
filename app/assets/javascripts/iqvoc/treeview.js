@@ -21,7 +21,6 @@ function Treeview(container) {
     // build tree data from html markup
     var data = $(this).children('li').map(function() {
       var item = $(this);
-      console.log(item)
       return {
         label: item.children('a').html(),
         load_on_demand: item.data('has-children'),

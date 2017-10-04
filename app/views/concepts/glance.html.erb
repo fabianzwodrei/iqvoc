@@ -25,27 +25,35 @@
       </div>
       <% end %>
       <% if @view.alt_labels.any? %>
-      <div>
-        <h2><%= Iqvoc::Concept.alt_labeling_class.model_name.human(count: 2) %></h2>
-        <ul class="label-list">
-          <% @view.alt_labels.each do |l| %><!--
-          --><li class="label-list-item">
-               <span class="label-list-item-value"><%= l.value %></span>
-             </li><!--
-          --><% end %>
-        </ul>
-      </div>
+        <div>
+          <h2><%= Iqvoc::Concept.alt_labeling_class.model_name.human(count: 2) %></h2>
+          <ul class="label-list">
+            <% @view.alt_labels.each do |l| %><!--
+            --><li class="label-list-item">
+                 <span class="label-list-item-value"><%= l.value %></span>
+               </li><!--
+            --><% end %>
+          </ul>
+        </div>
       <% end %>
+      <% if @concept.matches.any? %>
+        <div id="matches">
+          <% data = concept_view_data(@concept)["matches"] %>
+          <%- data.keys.sort.each do |sort_key| -%>
+            <%= raw data[sort_key] %>
+          <%- end -%>
+        </div>
+      <% end -%>
 
       <% if @view.notes.any? %>
-      <% @view.notes.each do |n| %>
-      <% unless n.class == Note::SKOS::ChangeNote %>
-      <div>
-        <h2><%= n.model_name.human %> (<%= n.language %>)</h2>
-        <p><%= n.value %></p>
-      </div>
-      <% end %>
-      <% end %>
+        <% @view.notes.each do |n| %>
+          <% unless n.class == Note::SKOS::ChangeNote %>
+            <div>
+              <h2><%= n.model_name.human %> (<%= n.language %>)</h2>
+              <p><%= n.value %></p>
+            </div>
+          <% end %>
+        <% end %>
       <% end %>
 
       <% if @view.collections.any? %>
