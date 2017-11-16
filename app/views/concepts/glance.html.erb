@@ -83,3 +83,20 @@
   </div>
 </div>
 <!-- / Modal -->
+
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+
+    $('#matches').find('a').each(function(i,item){
+      var item_url = $(item).attr('href');
+      if (item_url.match(window.location.host)) {
+        $.getJSON(item_url.replace(window.location.origin,""), function( data ) {
+          $(item).append('<div class="concept-mapping-broader-path">' + data.broader_path_as_string + '</div>')
+        });  
+      }
+      
+      
+    });
+  })
+
+</script>

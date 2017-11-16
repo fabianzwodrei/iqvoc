@@ -10,7 +10,6 @@ function ConceptMappingManager(selector, editable) {
   this.editable = editable === true;
   this.conceptMappings = this.determineConceptMappings();
   this.datasets = $(document.body).data("datasets");
-
   this.list = $('<ul class="concept-mappings" />').appendTo(this.root);
   this.render();
 
@@ -47,9 +46,6 @@ ConceptMappingManager.prototype.render = function() {
   $.each(this.conceptMappings, function(label, category) {
     $.each(category.values, function(i, item) {
       item = self.renderBubble(item, label);
-
-      
-
       items.push(item[0]);
     });
   });
@@ -58,9 +54,11 @@ ConceptMappingManager.prototype.render = function() {
 
   $(items).each(function(i,item){
     var item_url = $(item).find('a')[0].href;
-    $.getJSON( item_url, function( data ) {
-      $(item).append('<div class="concept-mapping-broader-path">' + data.broader_path_as_string + '</div>')
-    });
+    if (item_url.match(window.location.host)) {
+      $.getJSON(item_url.replace(window.location.origin,""), function( data ) {
+        $(item).append('<div class="concept-mapping-broader-path">' + data.broader_path_as_string + '</div>')
+      });  
+    }
   });
 };
 ConceptMappingManager.prototype.renderBubble = function(item, categoryLabel) {

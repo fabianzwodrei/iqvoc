@@ -1,6 +1,6 @@
-<div class="relation panel">
+<div class="relation panel concept-mapping">
   <h2><%= klass.model_name.human(:count => 2) %></h2>
-  <div class="relation-body">
+  <div class="relation-body" >
     <%= item_listing(concept.matches_for_class(klass)) do |match|
       auto_link(match.value, :html => { :target => '_blank' }) do |text|
         Iqvoc::rdf_namespaces.each do |prefix, url|
